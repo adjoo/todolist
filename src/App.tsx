@@ -1,24 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Header} from "./Components/Header/Header";
+import TodoContainer from "./Components/TodoContainer/TodoContainer";
+import {actions, AppStateInterface, store} from "./store";
 
-function App() {
+type AppProps = AppStateInterface & {dispatch: typeof store.dispatch}
+
+
+function App(props: AppProps) {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header>
+        Header content
+      </Header>
+        <main>
+            <TodoContainer todoItems={props.todoItems} dispatch={props.dispatch}/>
+        </main>
+        <footer>footer</footer>
     </div>
   );
 }
